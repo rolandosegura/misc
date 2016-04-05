@@ -32,10 +32,10 @@ func main() {
 		b := buf[:n]
 		for len(b) > 0 {
 			r, sz := utf8.DecodeRune(b)
-			if r == utf8.RuneError && sz == 1 {
+			if r == utf8.RuneError {
 				fmt.Println()
 				log.Printf("%v:%v found invalid utf8 rune at byte %v %x", fname, nl, nc, b[0])
-				b = b[1:]
+				b = b[sz:]
 				continue
 			}
 			fmt.Printf("%c", r)
